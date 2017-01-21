@@ -33,9 +33,16 @@ To seed all models with CSV files present:
 # Load the extension
 Sequel::Database.extension :from_csv
 
-# Sync all CSV files in a directory
+# Sync all models with CSV files recursively
 DB.seed_from_csv "app/models/"
 ```
+## To Do
+
+ - [ ] Add tests
+ - [ ] Remove the `activesupport` dependency
+ - [ ] Allow custom primary key field names
+ - [ ] Remove PostgreSQL-specific code
+ - [ ] Document optional arguments
 
 ## Development
 
