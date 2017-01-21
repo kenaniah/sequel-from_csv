@@ -1,28 +1,41 @@
-# Sequel::FromCsv
+# Sequel - From CSV
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/sequel/from_csv`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Provides a simple way to seed and synchronize table data using CSV files.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+```bash
+$ gem install sequel-from_csv
+```
+
+Or add this line to your application's Gemfile then execute `bundle install`:
 
 ```ruby
 gem 'sequel-from_csv'
 ```
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install sequel-from_csv
-
 ## Usage
 
-TODO: Write usage instructions here
+To seed data for an individual model:
+
+```ruby
+# Load the plugin
+Sequel::Model.plugin :from_csv
+
+# Sync an individual model
+class Country < Sequel::Model; end;
+Country.seed_from_csv "app/models/country.csv"
+```
+
+To seed all models with CSV files present:
+
+```ruby
+# Load the extension
+Sequel::Database.extension :from_csv
+
+# Sync all CSV files in a directory
+DB.seed_from_csv "app/models/"
+```
 
 ## Development
 
