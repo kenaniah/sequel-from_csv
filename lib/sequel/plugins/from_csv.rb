@@ -30,14 +30,16 @@ module Sequel
             end
 
             # Update the table's sequence
-            if reset_sequence case self.db.database_type
-            when :postgres
-              self.db.run <<~SQL
-                SELECT
-                  setval(pg_get_serial_sequence('#{self.simple_table}', 'id'), coalesce(max(id), 1), true)
-                FROM
-                  #{self.simple_table}
-              SQL
+            if reset_sequence
+              case self.db.database_type
+              when :postgres
+                self.db.run <<~SQL
+                  SELECT
+                    setval(pg_get_serial_sequence('#{self.simple_table}', 'id'), coalesce(max(id), 1), true)
+                  FROM
+                    #{self.simple_table}
+                SQL
+              end
             end
 
           end
