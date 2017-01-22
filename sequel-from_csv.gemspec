@@ -4,7 +4,7 @@
 
 Gem::Specification.new do |s|
   s.name          = "sequel-from_csv"
-  s.version       = "0.1.0"
+  s.version       = "0.1.1"
   s.authors       = ["Kenaniah Cerny"]
   s.email         = ["kenaniah@gmail.com"]
 

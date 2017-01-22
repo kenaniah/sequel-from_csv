@@ -41,7 +41,7 @@ DB.seed_from_csv "app/models/"
  - [ ] Add tests
  - [ ] Remove the `activesupport` dependency
  - [ ] Allow custom primary key field names
- - [ ] Remove PostgreSQL-specific code
+ - [x] Wrap PostgreSQL-specific resequencing
  - [ ] Document optional arguments
 
 ## Development
