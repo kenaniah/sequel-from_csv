@@ -14,6 +14,8 @@ Gem::Specification.new do |s|
   s.files         = `git ls-files -z`.split("\x0").select{ |f| f.match /lib\// }
   s.require_paths = ["lib"]
 
+  s.required_ruby_version = '>= 2.3.0'
+
   s.add_dependency "activesupport" # For String#classify and String#constantize
   s.add_dependency "sequel"
 
