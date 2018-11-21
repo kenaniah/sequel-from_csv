@@ -1,6 +1,6 @@
 # coding: utf-8
-# lib = File.expand_path('../lib', __FILE__)
-# $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name          = "sequel-from_csv"
@@ -22,4 +22,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "minitest-reporters"
   s.add_development_dependency "bundler"
   s.add_development_dependency "rake"
+  s.add_development_dependency "pry"
 end
