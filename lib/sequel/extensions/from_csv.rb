@@ -2,7 +2,7 @@ module Sequel
   module Extensions
     module FromCsv
 
-      # Finds all CSV files in a directory and synchronizes with their respective DB tables
+      # Finds all CSV files in a directory and synchronizes their respective database tables
       def seed_from_csv directory, **opts
 
         Dir.glob("#{directory}/**/*.csv").each do |filename|
@@ -22,7 +22,6 @@ module Sequel
       end
 
     end
-
   end
-  Database.register_extension(:from_csv, Extensions::FromCsv)
+  Database.register_extension :from_csv, Extensions::FromCsv
 end
