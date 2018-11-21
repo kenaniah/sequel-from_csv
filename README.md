@@ -1,5 +1,10 @@
 # Sequel - From CSV
 
+[![Gem Version](https://badge.fury.io/rb/sequel-from_csv.svg)](http://badge.fury.io/rb/sequel-from_csv)
+[![Build Status](https://secure.travis-ci.org/kenaniah/sequel-from_csv.svg)](http://travis-ci.org/kenaniah/sequel-from_csv)
+[![Dependency Status](https://gemnasium.com/kenaniah/sequel-from_csv.svg)](https://gemnasium.com/kenaniah/sequel-from_csv)
+[![Inline docs](http://inch-ci.org/github/kenaniah/sequel-from_csv.svg?branch=master)](http://inch-ci.org/github/kenaniah/sequel-from_csv)
+
 Provides a simple way to seed and synchronize table data using CSV files.
 
 ## Installation

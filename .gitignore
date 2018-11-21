@@ -1,3 +1,4 @@
+gemfiles/*.lock
 /.bundle/
 /.yardoc
 /Gemfile.lock

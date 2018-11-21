@@ -4,7 +4,7 @@
 
 Gem::Specification.new do |s|
   s.name          = "sequel-from_csv"
-  s.version       = "0.1.2"
+  s.version       = "0.2.0"
   s.authors       = ["Kenaniah Cerny"]
   s.email         = ["kenaniah@gmail.com"]
 
@@ -17,6 +17,9 @@ Gem::Specification.new do |s|
   s.add_dependency "activesupport" # For String#classify and String#constantize
   s.add_dependency "sequel"
 
+  s.add_development_dependency "appraisal"
+  s.add_development_dependency "minitest"
+  s.add_development_dependency "minitest-reporters"
   s.add_development_dependency "bundler"
   s.add_development_dependency "rake"
 end
