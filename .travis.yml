@@ -23,3 +23,4 @@ notifications:
 addons:
   artifacts:
     paths: test/database.log
+  postgresql: "10.0"
