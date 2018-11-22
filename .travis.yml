@@ -21,6 +21,4 @@ services:
 notifications:
   email: false
 addons:
-  artifacts:
-    paths: test/database.log
   postgresql: "9.5"

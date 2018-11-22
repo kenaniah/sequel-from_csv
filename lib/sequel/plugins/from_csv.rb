@@ -10,7 +10,22 @@ module Sequel
 
       module ClassMethods
 
-        # Synchronizes a table's data with a CSV file
+        # Synchronizes a table's data with a CSV file. Returns self.
+        #
+        # The table being synchronized must contain exactly one primary key column, and the CSV file used
+        # must contain the primary key column as one of its fields.
+        #
+        # +Options:+
+        # :delete_missing :: whether to remove rows from the table that were not found in the CSV file
+        # :reset_sequence :: whether to update the primary key's sequence to reflect the max primary key value
+        #
+        # :reset_sequence only works on PostgreSQL tables that auto-increment their primary keys using sequences
+        #
+        # +Usage:+
+        #    class Artist < Sequel::Model
+        #      plugin :from_csv
+        #    end
+        #    Artist.seed_from_csv "seeds/artists.csv", reset_sequence: true
         def seed_from_csv csv_path, delete_missing: false, reset_sequence: false
 
           # Read the source CSV file
