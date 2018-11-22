@@ -22,6 +22,10 @@ describe "Plugin" do
           is_active BOOLEAN,
           created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
         );
+        INSERT INTO simple_#{@random} (name, is_active) VALUES
+          ('first', true),
+          ('second', false)
+        ;
 
         -- A namespaced table
         CREATE TABLE test_#{@random}.namespaced(
@@ -29,19 +33,36 @@ describe "Plugin" do
           field1 INTERVAL,
           field2 TEXT
         );
+        INSERT INTO test_#{@random}.namespaced VALUES
+          ('one', null, 'val1'),
+          ('two', null, 'val2'),
+          ('three', '1 month', 'val3')
+        ;
 
         -- A table with a compound key
         CREATE TABLE test_#{@random}.compound(
           key1 INTEGER NOT NULL,
           key2 INTEGER NOT NULL,
-          field1 TEXT
+          field1 TEXT,
+          PRIMARY KEY (key1, key2)
         );
+        INSERT INTO test_#{@random}.compound VALUES
+          (1, 1, 'a'),
+          (1, 2, 'b'),
+          (2, 2, 'c')
+        ;
 
         -- A table with no keys
         CREATE TABLE test_#{@random}.keyless(
           field1 TEXT,
-          field2 TEXT
+          field2 TEXT,
+          UNIQUE (field1, field2)
         );
+        INSERT INTO test_#{@random}.keyless VALUES
+          ('a', 'one'),
+          ('b', 'two'),
+          ('a', 'three')
+        ;
 
       SQL
 
