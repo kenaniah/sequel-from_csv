@@ -1,6 +1,12 @@
 # Sequel - From CSV
 
+[![Gem Version](https://badge.fury.io/rb/sequel-from_csv.svg)](http://badge.fury.io/rb/sequel-from_csv)
+[![Build Status](https://secure.travis-ci.org/kenaniah/sequel-from_csv.svg)](http://travis-ci.org/kenaniah/sequel-from_csv)
+[![Inline docs](http://inch-ci.org/github/kenaniah/sequel-from_csv.svg?branch=master)](http://inch-ci.org/github/kenaniah/sequel-from_csv)
+
 Provides a simple way to seed and synchronize table data using CSV files.
+
+Requires PostgreSQL 9.5 or newer.
 
 ## Installation
 
@@ -22,9 +28,9 @@ To seed data for an individual model:
 # Load the plugin
 Sequel::Model.plugin :from_csv
 
-# Sync an individual model
+# Sync an individual model (removing rows in the table not found in the CSV)
 class Country < Sequel::Model; end;
-Country.seed_from_csv "app/models/country.csv"
+Country.seed_from_csv "app/models/country.csv", delete_missing: true
 ```
 
 To seed all models with CSV files present:
@@ -33,16 +39,16 @@ To seed all models with CSV files present:
 # Load the extension
 Sequel::Database.extension :from_csv
 
-# Sync all models with CSV files recursively
-DB.seed_from_csv "app/models/"
+# Sync all models with CSV files recursively, updating PostgreSQL's primary key sequences
+DB.seed_from_csv "app/models/", reset_sequence: true
 ```
-## To Do
 
- - [ ] Add tests
- - [ ] Remove the `activesupport` dependency
- - [ ] Allow custom primary key field names
- - [x] Wrap PostgreSQL-specific resequencing
- - [ ] Document optional arguments
+### Options
+
+| Argument | Default | Description |
+|---|---|
+| `:delete_missing` | `false` | whether to remove rows from the table that were not found in the CSV file |
+| `:reset_sequence` | `false` | whether to update the primary key's sequence to reflect the max primary key value |
 
 ## Development
 
