@@ -3,10 +3,14 @@ require "test_helper"
 describe "Plugin" do
 
   def with_connection
+
     return skip("No DATABASE_URL env variable defined") unless ENV['DATABASE_URL']
+
     @db ||= Sequel.connect ENV['DATABASE_URL']
     @random = rand 10000...10000
+
     @db.transaction rollback: :always do
+
       @db.run <<-SQL
 
         CREATE SCHEMA test_#{@random};
@@ -16,7 +20,7 @@ describe "Plugin" do
           id SERIAL PRIMARY KEY,
           name TEXT NOT NULL,
           is_active BOOLEAN,
-          created_at NOT NULL DEFAULT CURRENT_TIMESTAMP
+          created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
         );
 
         -- A namespaced table
@@ -40,8 +44,12 @@ describe "Plugin" do
         );
 
       SQL
+
+      # Yield the transaction
       yield
+
     end
+
   end
 
   it "should expose a #seed_from_csv method on model instances" do
