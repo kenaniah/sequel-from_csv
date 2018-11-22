@@ -15,7 +15,8 @@ before_script:
   - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
 env:
   global:
-    DATABASE_URL=postgres:///travis_ci_test
+    - DATABASE_URL=postgres://@:5433/travis_ci_test
+    - PGPORT=5433
 services:
 - postgresql
 notifications:
@@ -23,8 +24,8 @@ notifications:
 addons:
   artifacts:
     paths: test/database.log
-  # postgresql: "10"
-  # apt:
-  #   packages:
-  #   - postgresql-10
-  #   - postgresql-client-10
+  postgresql: "10"
+  apt:
+    packages:
+    - postgresql-10
+    - postgresql-client-10
