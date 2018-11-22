@@ -33,6 +33,7 @@ describe "Plugin" do
       end
 
       assert_equal 3, TestingModel.count
+      assert_equal :id, TestingModel.primary_key
 
       # Yield the transaction
       super(&block)
