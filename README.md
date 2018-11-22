@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/sequel-from_csv.svg)](https://badge.fury.io/rb/sequel-from_csv)
 [![Build Status](https://secure.travis-ci.org/kenaniah/sequel-from_csv.svg)](https://travis-ci.org/kenaniah/sequel-from_csv)
-[![Inline docs](https://www.rubydoc.info/github/kenaniah/sequel-from_csv/)](https://inch-ci.org/github/kenaniah/sequel-from_csv)
+[![Inline docs](https://inch-ci.org/github/kenaniah/sequel-from_csv.svg?branch=master)](https://inch-ci.org/github/kenaniah/sequel-from_csv)
 
 Provides a simple way to seed and synchronize table data using CSV files.
 
