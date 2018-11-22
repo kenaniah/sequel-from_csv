@@ -23,4 +23,8 @@ notifications:
 addons:
   artifacts:
     paths: test/database.log
-  postgresql: "10.0"
+  postgresql: "10"
+  apt:
+    packages:
+    - postgresql-10
+    - postgresql-client-10
