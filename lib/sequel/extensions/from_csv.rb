@@ -12,7 +12,7 @@ module Sequel
       #   Artist.seed_from_csv "artists.csv"
       #   Artist::HasAlbum.seed_from_csv "artist/has_albums.csv"
       #
-      # +Options:+
+      # *Options:*
       # :delete_missing :: whether to remove rows from the table that were not found in the CSV file
       # :reset_sequence :: whether to update the primary key's sequence to reflect the max primary key value
       #

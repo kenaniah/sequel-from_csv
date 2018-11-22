@@ -15,13 +15,13 @@ module Sequel
         # The table being synchronized must contain exactly one primary key column, and the CSV file used
         # must contain the primary key column as one of its fields.
         #
-        # +Options:+
+        # *Options:*
         # :delete_missing :: whether to remove rows from the table that were not found in the CSV file
         # :reset_sequence :: whether to update the primary key's sequence to reflect the max primary key value
         #
         # :reset_sequence only works on PostgreSQL tables that auto-increment their primary keys using sequences
         #
-        # +Usage:+
+        # *Usage:*
         #    class Artist < Sequel::Model
         #      plugin :from_csv
         #    end
