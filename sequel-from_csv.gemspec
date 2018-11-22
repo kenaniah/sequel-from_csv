@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "pg"
   s.add_development_dependency "appraisal"
   s.add_development_dependency "minitest"
+  s.add_development_dependency "minitest-hooks"
   s.add_development_dependency "minitest-reporters"
   s.add_development_dependency "bundler"
   s.add_development_dependency "rake"

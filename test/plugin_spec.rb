@@ -1,16 +1,18 @@
 require "test_helper"
+require "minitest/hooks/default"
 
 describe "Plugin" do
 
-  def with_connection
+  around do |&block|
 
     return skip("No DATABASE_URL env variable defined") unless ENV['DATABASE_URL']
 
     @db ||= Sequel.connect ENV['DATABASE_URL']
-    @random = rand 10000...10000
+    @random ||= rand 10_000..100_000
 
     @db.transaction rollback: :always do
 
+      Sequel::Model.db = @db
       @db.run <<-SQL
 
         CREATE SCHEMA test_#{@random};
@@ -28,12 +30,12 @@ describe "Plugin" do
         ;
 
         -- A namespaced table
-        CREATE TABLE test_#{@random}.namespaced(
+        CREATE TABLE test_#{@random}.widgets(
           key1 TEXT PRIMARY KEY,
           field1 INTERVAL,
           field2 TEXT
         );
-        INSERT INTO test_#{@random}.namespaced VALUES
+        INSERT INTO test_#{@random}.widgets VALUES
           ('one', null, 'val1'),
           ('two', null, 'val2'),
           ('three', '1 month', 'val3')
@@ -66,8 +68,28 @@ describe "Plugin" do
 
       SQL
 
+      # class ::SimpleModel < Sequel::Model :"simple_#{@random}"
+      #   plugin :from_csv
+      # end
+      #
+      # module Name
+      #   module Spaced
+      #   end
+      # end
+      # class ::Name::Spaced::Widget < Sequel::Model Sequel[:"test_#{@random}"][:widgets]
+      #   plugin :from_csv
+      # end
+      #
+      # class ::CompoundModel < Sequel::Model Sequel[:"test_#{@random}"][:compound]
+      #   plugin :from_csv
+      # end
+      #
+      # class ::KeylessModel < Sequel::Model Sequel[:"test_#{@random}"][:keyless]
+      #   plugin :from_csv
+      # end
+
       # Yield the transaction
-      yield
+      super(&block)
 
     end
 
@@ -82,9 +104,7 @@ describe "Plugin" do
   end
 
   it "should return self when #seed_from_csv is called" do
-    with_connection do
-      assert true
-    end
+    assert true
   end
 
   it "should raise not implemented for compound primary keys" do
