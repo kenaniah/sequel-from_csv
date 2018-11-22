@@ -20,3 +20,6 @@ services:
 - postgresql
 notifications:
   email: false
+addons:
+  artifacts:
+    paths: test/database.log

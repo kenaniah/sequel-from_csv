@@ -1,4 +1,5 @@
 gemfiles/*.lock
+/test/database.log
 /.bundle/
 /.yardoc
 /Gemfile.lock
