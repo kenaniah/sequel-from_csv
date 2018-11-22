@@ -11,7 +11,7 @@ describe "Plugin" do
       DB.execute <<-SQL
 
         -- A simple base table
-        CREATE TEMP TABLE simple_tests(
+        CREATE TABLE simple_tests(
           id SERIAL PRIMARY KEY,
           name TEXT NOT NULL,
           is_active BOOLEAN,
