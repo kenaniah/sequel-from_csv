@@ -10,5 +10,12 @@ gemfile:
 before_install:
   - gem update --system
   - gem update bundler
+before_script:
+  - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
+env:
+  global:
+    DATABASE_URL=postgres:///travis_ci_test
+services:
+- postgresql
 notifications:
   email: false
