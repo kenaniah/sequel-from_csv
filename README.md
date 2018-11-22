@@ -6,6 +6,8 @@
 
 Provides a simple way to seed and synchronize table data using CSV files.
 
+Requires PostgreSQL 9.5 or newer.
+
 ## Installation
 
 ```bash

@@ -1,5 +1,4 @@
 require "test_helper"
-require "minitest/hooks/default"
 
 describe "Plugin" do
 
@@ -69,7 +68,9 @@ describe "Plugin" do
   end
 
   it "should update existing rows based on primary key" do
-    skip
+    assert_equal 'second', TestingModel[2].name
+    TestingModel.seed_from_csv "test/seed/simple.csv"
+    assert_equal 'updated', TestingModel[2].name
   end
 
   it "should delete missing rows when :delete_missing is enabled" do
@@ -96,22 +97,21 @@ describe "Plugin" do
     assert_equal 5, currval
 
     # These should be unchanged
-    TestingModel.seed_from_csv "test/seed/simple_single_row.csv", reset_sequence: false
+    TestingModel.seed_from_csv "test/seed/simple_single_row.csv"
     assert_equal 5, currval
 
     TestingModel.seed_from_csv "test/seed/simple_single_row.csv", reset_sequence: true
     assert_equal 3, TestingModel.count
     assert_equal 5, currval
 
-    TestingModel.seed_from_csv "test/seed/simple.csv", reset_sequence: false, delete_missing: true
+    TestingModel.seed_from_csv "test/seed/simple.csv", delete_missing: true
     assert_equal 5, currval
 
-    # This should update to the last value
+    # These should update to the last value
     TestingModel.seed_from_csv "test/seed/simple.csv", reset_sequence: true
     assert_equal 3, currval
 
-    # The default is reset_sequence: true
-    TestingModel.seed_from_csv "test/seed/simple_single_row.csv", delete_missing: true
+    TestingModel.seed_from_csv "test/seed/simple_single_row.csv", delete_missing: true, reset_sequence: true
     assert_equal 1, currval
 
   end

@@ -19,4 +19,12 @@ describe "Extension" do
     assert_nil db.seed_from_csv "test/seed/empty/"
   end
 
+  it "should seed all CSV files found within a directory" do
+    skip
+  end
+
+  it "should seed all namespaced CSV files found within a directory" do
+    skip
+  end
+
 end

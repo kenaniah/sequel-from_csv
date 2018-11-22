@@ -11,7 +11,7 @@ module Sequel
       module ClassMethods
 
         # Synchronizes a table's data with a CSV file
-        def seed_from_csv csv_path, delete_missing: false, reset_sequence: true
+        def seed_from_csv csv_path, delete_missing: false, reset_sequence: false
 
           # Read the source CSV file
           data = CSV.table csv_path, converters: :date_time
