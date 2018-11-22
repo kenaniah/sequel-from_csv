@@ -14,7 +14,9 @@ describe "Extension" do
   end
 
   it "should return nil from #seed_from_csv" do
-    skip
+    db = Sequel.mock
+    db.extension :from_csv
+    assert_nil db.seed_from_csv "test/seed/empty/"
   end
 
 end

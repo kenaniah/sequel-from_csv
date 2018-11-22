@@ -4,6 +4,7 @@ module Sequel
   module Plugins
     module FromCsv
 
+      class MissingDataException < StandardError; end
       class MissingFieldException < StandardError; end
       class NotYetImplementedException < StandardError; end
 
@@ -15,6 +16,11 @@ module Sequel
           # Read the source CSV file
           data = CSV.table csv_path, converters: :date_time
 
+          # Guard against CSV files that have headers but not data (to handle a quirk in Ruby's CSV parser)
+          if data.headers.empty?
+            raise MissingDataException, "CSV file #{csv_path} did not contain any data rows"
+          end
+
           # Check that all primary key columns are present
           pk = self.primary_key
           if Array === pk
@@ -22,7 +28,7 @@ module Sequel
           end
 
           # Ensure the ID column exists
-          unless data.first[pk]
+          unless data.headers.include? pk
             raise MissingFieldException, "CSV file #{csv_path} must contain a column named '#{pk}'"
           end
 
@@ -53,6 +59,9 @@ module Sequel
             end
 
           end
+
+          # Should return itself
+          self
 
         end
 

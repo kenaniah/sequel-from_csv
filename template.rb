@@ -24,9 +24,10 @@ describe "Plugin" do
           is_active BOOLEAN,
           created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
         );
-        INSERT INTO simple_#{@random} (name, is_active) VALUES
-          ('first', true),
-          ('second', false)
+        INSERT INTO simple_#{@random} (id, name, is_active) VALUES
+          (1, 'first', true),
+          (2, 'second', false),
+          (5, 'fifth', true)
         ;
 
         -- A namespaced table
