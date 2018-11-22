@@ -23,7 +23,7 @@ module Sequel
 
           # Ensure the ID column exists
           unless data.first[pk]
-            raise "CSV file #{csv_path} must contain a column named '#{pk}'"
+            raise MissingFieldException, "CSV file #{csv_path} must contain a column named '#{pk}'"
           end
 
           self.db.transaction do
