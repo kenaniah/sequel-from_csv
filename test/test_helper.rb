@@ -2,6 +2,7 @@ require "minitest/autorun"
 require "minitest/spec"
 require "minitest/reporters"
 
+require "pg"
 require "sequel"
 require "sequel-from_csv"
 require "pry"
