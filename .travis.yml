@@ -12,11 +12,10 @@ before_install:
   - gem update --system
   - gem update bundler
 before_script:
-  - sudo /usr/lib/postgresql/10/bin/pg_ctl -D /var/lib/postgresql/10/main -l logfile start
   - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
 env:
   global:
-    - DATABASE_URL=postgres:///travis_ci_test
+    DATABASE_URL=postgres:///travis_ci_test
 services:
 - postgresql
 notifications:
@@ -24,8 +23,4 @@ notifications:
 addons:
   artifacts:
     paths: test/database.log
-  postgresql: "10"
-  apt:
-    packages:
-    - postgresql-10
-    - postgresql-client-10
+  postgresql: "9.6"
