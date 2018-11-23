@@ -42,7 +42,7 @@ To seed all models with CSV files present:
 Sequel::Database.extension :from_csv
 
 # Sync all models with CSV files recursively, updating PostgreSQL's primary key sequences
-DB.seed_from_csv "app/models/", reset_sequence: true
+DB.seed_from_csv "app/models/", resequence: true
 ```
 
 ### Options
@@ -50,7 +50,7 @@ DB.seed_from_csv "app/models/", reset_sequence: true
 | Argument | Default | Description |
 | --- | --- | --- |
 | `:delete_missing` | `false` | whether to remove rows from the table that were not found in the CSV file |
-| `:reset_sequence` | `false` | whether to update the primary key's sequence to reflect the max primary key value |
+| `:resequence` | `false` | whether to update the primary key's sequence to reflect the max primary key value |
 
 ## Development
 

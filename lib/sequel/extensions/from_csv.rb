@@ -14,9 +14,9 @@ module Sequel
       #
       # *Options:*
       # :delete_missing :: whether to remove rows from the table that were not found in the CSV file
-      # :reset_sequence :: whether to update the primary key's sequence to reflect the max primary key value
+      # :resequence :: whether to update the primary key's sequence to reflect the max primary key value
       #
-      # :reset_sequence only works on PostgreSQL tables that auto-increment their primary keys using sequences
+      # :resequence only works on PostgreSQL tables that auto-increment their primary keys using sequences
       def seed_from_csv directory, **opts
 
         Dir.glob("#{directory}/**/*.csv").each do |filename|

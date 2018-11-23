@@ -88,7 +88,7 @@ describe "Plugin" do
 
   end
 
-  it "should update the table's sequence if :reset_sequence is enabled" do
+  it "should update the table's sequence if :resequence is enabled" do
 
     def currval
       DB["SELECT currval('simple_tests_id_seq')"].first[:currval]
@@ -100,7 +100,7 @@ describe "Plugin" do
     TestingModel.seed_from_csv "test/seed/simple_single_row.csv"
     assert_equal 5, currval
 
-    TestingModel.seed_from_csv "test/seed/simple_single_row.csv", reset_sequence: true
+    TestingModel.seed_from_csv "test/seed/simple_single_row.csv", resequence: true
     assert_equal 3, TestingModel.count
     assert_equal 5, currval
 
@@ -108,10 +108,10 @@ describe "Plugin" do
     assert_equal 5, currval
 
     # These should update to the last value
-    TestingModel.seed_from_csv "test/seed/simple.csv", reset_sequence: true
+    TestingModel.seed_from_csv "test/seed/simple.csv", resequence: true
     assert_equal 3, currval
 
-    TestingModel.seed_from_csv "test/seed/simple_single_row.csv", delete_missing: true, reset_sequence: true
+    TestingModel.seed_from_csv "test/seed/simple_single_row.csv", delete_missing: true, resequence: true
     assert_equal 1, currval
 
   end

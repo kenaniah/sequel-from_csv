@@ -17,16 +17,16 @@ module Sequel
         #
         # *Options:*
         # :delete_missing :: whether to remove rows from the table that were not found in the CSV file
-        # :reset_sequence :: whether to update the primary key's sequence to reflect the max primary key value
+        # :resequence :: whether to update the primary key's sequence to reflect the max primary key value
         #
-        # :reset_sequence only works on PostgreSQL tables that auto-increment their primary keys using sequences
+        # :resequence only works on PostgreSQL tables that auto-increment their primary keys using sequences
         #
         # *Usage:*
         #    class Artist < Sequel::Model
         #      plugin :from_csv
         #    end
-        #    Artist.seed_from_csv "seeds/artists.csv", reset_sequence: true
-        def seed_from_csv csv_path, delete_missing: false, reset_sequence: false
+        #    Artist.seed_from_csv "seeds/artists.csv", resequence: true
+        def seed_from_csv csv_path, delete_missing: false, resequence: false
 
           # Read the source CSV file
           data = CSV.table csv_path, converters: :date_time
@@ -61,7 +61,7 @@ module Sequel
             end
 
             # Update the table's sequence
-            if reset_sequence
+            if resequence
               case self.db.database_type
               when :postgres
                 self.db.run <<~SQL
