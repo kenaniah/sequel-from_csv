@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.authors       = ["Kenaniah Cerny"]
   s.email         = ["kenaniah@gmail.com"]
 
-  s.summary       = "A simple way to seed and synchronize table data using CSV files"
+  s.summary       = "Provides a simple way to seed and synchronize table data using CSV files"
   s.homepage      = "https://github.com/kenaniah/sequel-from_csv"
 
   s.files         = `git ls-files -z`.split("\x0").select{ |f| f.match(/lib\//) }
