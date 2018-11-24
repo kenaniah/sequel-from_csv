@@ -29,7 +29,7 @@ module Sequel
         def seed_from_csv csv_path, delete_missing: false, resequence: false
 
           # Read the source CSV file
-          data = CSV.table csv_path, converters: :date_time
+          data = CSV.table csv_path, converters: :date_time, header_converters: -> (h) { h.to_sym }
 
           # Guard against CSV files that have headers but not data (to handle a quirk in Ruby's CSV parser)
           if data.headers.empty?
@@ -66,7 +66,7 @@ module Sequel
               when :postgres
                 self.db.run <<~SQL
                   SELECT
-                    setval(pg_get_serial_sequence('#{self.simple_table}', '#{pk}'), greatest(max(#{pk}), 1), true)
+                    setval(pg_get_serial_sequence('#{self.simple_table}', '#{pk}'), greatest(max(#{self.db.quote_identifier pk}), 1), true)
                   FROM
                     #{self.simple_table}
                 SQL
